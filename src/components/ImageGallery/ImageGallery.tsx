@@ -1,4 +1,4 @@
-import ImageCard from "../ImageCard/ImageCard.jsx";
+import ImageCard from "../ImageCard/ImageCard.js";
 import css from "./ImageGallery.module.css"
 
 export default function ImageGallery({ items, onOpen }) {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "../images-api.js";
-import ImageGallery from "./ImageGallery/ImageGallery.jsx";
-import SearchBar from "./SearchBar/SearchBar.jsx";
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.jsx";
-import ErrorMessage from "./ErrorMessage/ErrorMessage.jsx";
-import Loader from "./Loader/Loader.jsx";
-import ImageModal from "./ImageModal/ImageModal.jsx";
+import ImageGallery from "./ImageGallery/ImageGallery.js";
+import SearchBar from "./SearchBar/SearchBar.js";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.js";
+import ErrorMessage from "./ErrorMessage/ErrorMessage.js";
+import Loader from "./Loader/Loader.js";
+import ImageModal from "./ImageModal/ImageModal.js";
 
 const customStyles = {
   overlay: {
