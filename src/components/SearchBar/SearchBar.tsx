@@ -1,9 +1,10 @@
 import css from "./SearchBar.module.css";
+import {FormEvent} from "react"
 import { FiSearch } from "react-icons/fi";
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function SearchBar({onSearch}) {
-  const onSubmitHeader = (evt)=> {
+  const onSubmitHeader = (evt: FormEvent<HTMLFormElement>)=> {
 evt.preventDefault()
 const form = evt.target;
 const request = form.elements.input.value;
