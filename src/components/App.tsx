@@ -6,6 +6,7 @@ import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.js";
 import ErrorMessage from "./ErrorMessage/ErrorMessage.js";
 import Loader from "./Loader/Loader.js";
 import ImageModal from "./ImageModal/ImageModal.js";
+import {Image} from "./types.js"
 
 const customStyles = {
   overlay: {
@@ -28,7 +29,7 @@ const customStyles = {
 };
 
 export default function App() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<Image[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -36,7 +37,7 @@ export default function App() {
   const [query, setQuery] = useState<string>("");
 
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image |null>(null);
 
   console.log(images);
 
@@ -71,7 +72,7 @@ export default function App() {
     getImages();
   }, [query, page]);
 
-  function openModal(image) {
+  function openModal(image: Image) {
     setSelectedImage(image.urls.regular);
     setIsOpen(true);
   }
