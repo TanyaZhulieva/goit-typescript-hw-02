@@ -1,9 +1,18 @@
-import css from "./ImageCard.module.css"
+import css from "./ImageCard.module.css";
+import { FC } from "react";
 
-export default function ImageCard({src, alt, openModal}) {
+interface ImageCardProps {
+  src: string;
+  alt: string;
+  openModal: () => void;
+}
+
+const ImageCard: FC<ImageCardProps> = ({ src, alt, openModal }) => {
   return (
-    <div className={css.thumb }>
-      <img src={src} alt={alt}  className={css.image } onClick={openModal}/>
+    <div className={css.thumb}>
+      <img src={src} alt={alt} className={css.image} onClick={openModal} />
     </div>
   );
-}
+};
+
+export default ImageCard;

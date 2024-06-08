@@ -6,27 +6,7 @@ import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.js";
 import ErrorMessage from "./ErrorMessage/ErrorMessage.js";
 import Loader from "./Loader/Loader.js";
 import ImageModal from "./ImageModal/ImageModal.js";
-import {Image} from "./types.js"
-
-const customStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgb(58, 58, 58, 0.5)",
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    background: "",
-  },
-};
+import { Image } from "./types.js";
 
 export default function App() {
   const [images, setImages] = useState<Image[]>([]);
@@ -37,9 +17,7 @@ export default function App() {
   const [query, setQuery] = useState<string>("");
 
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<Image |null>(null);
-
-  console.log(images);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
@@ -73,8 +51,12 @@ export default function App() {
   }, [query, page]);
 
   function openModal(image: Image) {
-    setSelectedImage(image.urls.regular);
-    setIsOpen(true);
+    if (image.urls && image.urls.regular) {
+      setSelectedImage(image);
+      setIsOpen(true);
+    } else {
+      console.error("Image URLs or regular size URL is undefined");
+    }
   }
 
   function closeModal() {
@@ -93,13 +75,15 @@ export default function App() {
       {images.length > 0 && !isLoading && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-      <ImageModal
-        imageUrl={selectedImage}
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      />
+       
+      {selectedImage && (
+        <ImageModal
+          imageUrl={selectedImage.urls.regular}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+        />
+      )}
     </>
   );
 }

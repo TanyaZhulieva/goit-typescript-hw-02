@@ -1,34 +1,47 @@
 import css from "./SearchBar.module.css";
-import {FormEvent} from "react"
+import { Form, Field, Formik } from "formik";
+import { FC } from "react";
 import { FiSearch } from "react-icons/fi";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
-export default function SearchBar({onSearch}) {
-  const onSubmitHeader = (evt: FormEvent<HTMLFormElement>)=> {
-evt.preventDefault()
-const form = evt.target;
-const request = form.elements.input.value;
-if (request.trim() === "") {
-  toast.error("Please, enter your request!");
-  return;
+interface SearchBarProps {
+  onSearch: (newQuery: string) => void;
 }
-onSearch(request.trim())
-form.reset()
-  }
 
-  return <header className={css.header }>
-    <form onSubmit={onSubmitHeader} className={css.form }>
-      <div className={css.wrapper}>
-      <input
-        type="text"
-        name="input"
-        placeholder="Search images and photos"
-      className={css.input}/>
-      <button type="submit" className={css.button}>
-        <FiSearch />
-        </button>
-      </div>
-      <Toaster />
-    </form>
-  </header>;
-}
+const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+  const notify = () => {
+    toast.error("Please enter text to search for images.");
+  };
+
+  return (
+    <Formik
+      initialValues={{ query: "" }}
+      onSubmit={(values, actions) => {
+        if (!values.query.trim()) {
+          notify();
+          return;
+        }
+        onSearch(values.query);
+        actions.resetForm();
+      }}
+    >
+      <Form className={css.form}>
+        <div className={css.wrapper}>
+          <Field
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            name="query"
+            className={css.input}
+          />
+          <button type="submit" className={css.button}>
+            <FiSearch />{" "}
+          </button>
+        </div>
+      </Form>
+    </Formik>
+  );
+};
+
+export default SearchBar;

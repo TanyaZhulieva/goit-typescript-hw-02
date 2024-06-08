@@ -6,6 +6,7 @@
 .form {
    display: flex;
    justify-content: center;
+   background-color: #144b6f;
 }
 
 .wrapper {

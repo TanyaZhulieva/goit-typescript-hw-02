@@ -1,7 +1,15 @@
 import ImageCard from "../ImageCard/ImageCard.js";
+import {FC} from "react"
 import css from "./ImageGallery.module.css"
+import {Image} from "../types"
 
-export default function ImageGallery({ items, onOpen }) {
+interface ImageGalleryProps {
+  items: Image[];
+  onOpen: (image:Image)=> void;
+
+}
+
+ const ImageGallery: FC<ImageGalleryProps>=({ items, onOpen })=> {
   return (
     <ul className={css.gallery }>
       {items.map((item) => {
@@ -15,3 +23,5 @@ export default function ImageGallery({ items, onOpen }) {
     </ul>
   );
 }
+
+export default ImageGallery
