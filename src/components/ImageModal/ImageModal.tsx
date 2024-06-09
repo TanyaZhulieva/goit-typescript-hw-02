@@ -1,4 +1,4 @@
-import Modal from "react-modal";
+import Modal from 'react-modal';
 import { FC } from "react";
 
 Modal.setAppElement("#root");
