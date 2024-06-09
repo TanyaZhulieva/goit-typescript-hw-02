@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { fetchImages } from "../images-api.js";
-import ImageGallery from "./ImageGallery/ImageGallery.js";
-import SearchBar from "./SearchBar/SearchBar.js";
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.js";
-import ErrorMessage from "./ErrorMessage/ErrorMessage.js";
-import Loader from "./Loader/Loader.js";
-import ImageModal from "./ImageModal/ImageModal.js";
-import { Image } from "./types.js";
+import { fetchImages } from "../images-api";
+import ImageGallery from "./ImageGallery/ImageGallery";
+import SearchBar from "./SearchBar/SearchBar";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
+import ErrorMessage from "./ErrorMessage/ErrorMessage";
+import Loader from "./Loader/Loader";
+import ImageModal from "./ImageModal/ImageModal";
+import { Image } from "./types";
 
 export default function App() {
   const [images, setImages] = useState<Image[]>([]);

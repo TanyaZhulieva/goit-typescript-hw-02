@@ -1,15 +1,10 @@
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import { FC } from "react";
 
 Modal.setAppElement("#root");
 
 const customStyles = {
   overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     backgroundColor: "rgb(58, 58, 58, 0.5)",
   },
   content: {
